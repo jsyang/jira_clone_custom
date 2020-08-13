@@ -16,6 +16,8 @@ import {
   LinkText,
 } from './Styles';
 
+import useCurrentUser from '../../shared/hooks/currentUser';
+
 const propTypes = {
   project: PropTypes.object.isRequired,
   issueSearchModalOpen: PropTypes.func.isRequired,
@@ -24,6 +26,14 @@ const propTypes = {
 
 const ProjectSidebar = ({ project, issueSearchModalOpen, issueCreateModalOpen }) => {
   const match = useRouteMatch();
+  const { privilegeLevel } = useCurrentUser();
+
+  const settingsSection = (
+    <div>
+      <Divider />
+      {renderLinkItem(match, 'Settings', 'settings', '/settings')}
+    </div>
+  );
 
   return (
     <Sidebar>
@@ -38,8 +48,7 @@ const ProjectSidebar = ({ project, issueSearchModalOpen, issueCreateModalOpen })
       {renderLinkItem(match, 'Board', 'board', '/board')}
       {renderLinkItem(match, 'Search issues', 'search', null, issueSearchModalOpen)}
       {renderLinkItem(match, 'Create new issue', 'plus', null, issueCreateModalOpen)}
-      <Divider />
-      {renderLinkItem(match, 'Settings', 'settings', '/settings')}
+      {privilegeLevel !== 0 ? settingsSection : null}
     </Sidebar>
   );
 };

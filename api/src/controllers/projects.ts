@@ -1,5 +1,5 @@
 import { Project } from 'entities';
-import { catchErrors } from 'errors';
+import { catchErrors, NotPermittedError } from 'errors';
 import { findEntityOrThrow, updateEntity } from 'utils/typeorm';
 import { issuePartial } from 'serializers/issues';
 
@@ -16,6 +16,10 @@ export const getProjectWithUsersAndIssues = catchErrors(async (req, res) => {
 });
 
 export const update = catchErrors(async (req, res) => {
+  if (req.currentUser.privilegeLevel === 0) {
+    throw new NotPermittedError();
+  }
+
   const project = await updateEntity(Project, req.currentUser.projectId, req.body);
   res.respond({ project });
 });

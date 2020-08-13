@@ -8,6 +8,7 @@ const useCurrentUser = ({ cachePolicy = 'cache-only' } = {}) => {
   return {
     currentUser: get(data, 'currentUser'),
     currentUserId: get(data, 'currentUser.id'),
+    privilegeLevel: get(data, 'currentUser.privilegeLevel'),
   };
 };
 

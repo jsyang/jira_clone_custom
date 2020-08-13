@@ -1,6 +1,6 @@
 import { Comment } from 'entities';
-import { catchErrors } from 'errors';
-import { updateEntity, deleteEntity, createEntity } from 'utils/typeorm';
+import { catchErrors, NotPermittedError } from 'errors';
+import { updateEntity, deleteEntity, createEntity, findEntityOrThrow } from 'utils/typeorm';
 
 export const create = catchErrors(async (req, res) => {
   const comment = await createEntity(Comment, req.body);
@@ -13,6 +13,12 @@ export const update = catchErrors(async (req, res) => {
 });
 
 export const remove = catchErrors(async (req, res) => {
+  // jsyang: Don't allow deleting of other users' comments. just your own, unless you're a guest
+  const foundComment = await findEntityOrThrow(Comment, req.params.commentId);
+  if (req.currentUser.id !== foundComment.userId) {
+    throw new NotPermittedError();
+  }
+
   const comment = await deleteEntity(Comment, req.params.commentId);
   res.respond({ comment });
 });

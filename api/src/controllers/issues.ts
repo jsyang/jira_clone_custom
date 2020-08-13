@@ -1,5 +1,5 @@
 import { Issue } from 'entities';
-import { catchErrors } from 'errors';
+import { catchErrors, NotPermittedError } from 'errors';
 import { updateEntity, deleteEntity, createEntity, findEntityOrThrow } from 'utils/typeorm';
 
 export const getProjectIssues = catchErrors(async (req, res) => {
@@ -30,6 +30,7 @@ export const getIssueWithUsersAndComments = catchErrors(async (req, res) => {
   res.respond({ issue });
 });
 
+// jsyang: All users can create issues, hide this entire project tracker behind HTTP basic auth to avoid public use
 export const create = catchErrors(async (req, res) => {
   const listPosition = await calculateListPosition(req.body);
   const issue = await createEntity(Issue, { ...req.body, listPosition });
@@ -37,11 +38,19 @@ export const create = catchErrors(async (req, res) => {
 });
 
 export const update = catchErrors(async (req, res) => {
+  if (req.currentUser.privilegeLevel === 0) {
+    throw new NotPermittedError();
+  }
+
   const issue = await updateEntity(Issue, req.params.issueId, req.body);
   res.respond({ issue });
 });
 
 export const remove = catchErrors(async (req, res) => {
+  if (req.currentUser.privilegeLevel === 0) {
+    throw new NotPermittedError();
+  }
+
   const issue = await deleteEntity(Issue, req.params.issueId);
   res.respond({ issue });
 });

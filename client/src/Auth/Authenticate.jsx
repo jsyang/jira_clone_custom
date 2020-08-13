@@ -6,6 +6,8 @@ import toast from 'shared/utils/toast';
 import { getStoredAuthToken, storeAuthToken } from 'shared/utils/authToken';
 import { PageLoader } from 'shared/components';
 
+// todo: jsyang: have a login button as a guest which will call a login endpoint
+
 const Authenticate = () => {
   const history = useHistory();
 

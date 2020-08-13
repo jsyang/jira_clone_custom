@@ -15,6 +15,9 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - Added SHORTKEY + ENTER as a KB hotkey for any textarea / rich text component
 - Added ENTER autoFocused button for ConfirmModal
 - Assume UTC for time display (e.g. XXX hours ago) due to SQLite not having a native DATETIME column type
+- expose `privilegeLevel` from currentUser hook
+- privilegeLevel 0 is not allowed access to
+    - project settings
 
 ### API changes
 
@@ -22,6 +25,12 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - added `privilegeLevel` to User (lower is less power)
 - added AVATAR_URL_UNKNOWN for Guest user
 - ensure issue search works for SQLite
+- added a new `NotPermittedError`
+- privilegeLevel 0 is not allowed to
+    - update issues, projects
+    - delete comments
+- prevent users from deleting comments from other users
+ 
 
 ## Original README as follows
 

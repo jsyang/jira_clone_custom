@@ -36,3 +36,10 @@ export class InvalidTokenError extends CustomError {
     super(message, 'INVALID_TOKEN', 401);
   }
 }
+
+// jsyang: linked to privilegeLevel
+export class NotPermittedError extends CustomError {
+  constructor(message = 'Action not permitted.') {
+    super(message, 'NOT_PERMITTED', 403);
+  }
+}
