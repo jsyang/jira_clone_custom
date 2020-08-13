@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+const assumeUTC = date => `${date}Z`;
+
 export const formatDate = (date, format = 'MMMM D, YYYY') =>
   date ? moment(date).format(format) : date;
 
@@ -13,4 +15,5 @@ export const formatDateTimeForAPI = date =>
         .format()
     : date;
 
-export const formatDateTimeConversational = date => (date ? moment(date).fromNow() : date);
+export const formatDateTimeConversational = date =>
+  date ? moment(assumeUTC(date)).fromNow() : date;

@@ -11,6 +11,7 @@ const propTypes = {
   defaultValue: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
+  onSave: PropTypes.func,
   getEditor: PropTypes.func,
 };
 
@@ -20,6 +21,7 @@ const defaultProps = {
   defaultValue: undefined,
   value: undefined,
   onChange: () => {},
+  onSave: () => {},
   getEditor: () => {},
 };
 
@@ -33,13 +35,37 @@ const TextEditor = ({
   value: alsoDefaultValue,
   onChange,
   getEditor,
+  onSave,
 }) => {
   const $editorContRef = useRef();
   const $editorRef = useRef();
   const initialValueRef = useRef(defaultValue || alsoDefaultValue || '');
 
   useLayoutEffect(() => {
-    let quill = new Quill($editorRef.current, { placeholder, ...quillConfig });
+    let quill = new Quill($editorRef.current, {
+      placeholder,
+      theme: 'snow',
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline', 'strike'],
+          ['blockquote', 'code-block'],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+          [{ color: [] }, { background: [] }],
+          ['clean'],
+        ],
+        /* jsyang: SAVE via hotkey in any Quill edit area */
+        keyboard: {
+          bindings: {
+            enter: {
+              key: 'Enter',
+              shortKey: true,
+              handler: onSave,
+            },
+          },
+        },
+      },
+    });
 
     const insertInitialValue = () => {
       quill.clipboard.dangerouslyPasteHTML(0, initialValueRef.current);
@@ -66,20 +92,6 @@ const TextEditor = ({
       <div ref={$editorRef} />
     </EditorCont>
   );
-};
-
-const quillConfig = {
-  theme: 'snow',
-  modules: {
-    toolbar: [
-      ['bold', 'italic', 'underline', 'strike'],
-      ['blockquote', 'code-block'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      [{ color: [] }, { background: [] }],
-      ['clean'],
-    ],
-  },
 };
 
 TextEditor.propTypes = propTypes;

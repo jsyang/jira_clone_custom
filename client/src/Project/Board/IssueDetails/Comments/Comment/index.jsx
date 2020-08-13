@@ -54,7 +54,9 @@ const ProjectBoardIssueDetailsComment = ({ comment, fetchIssue }) => {
       <UserAvatar name={comment.user.name} avatarUrl={comment.user.avatarUrl} />
       <Content>
         <Username>{comment.user.name}</Username>
-        <CreatedAt>{formatDateTimeConversational(comment.createdAt)}</CreatedAt>
+        <CreatedAt title={comment.createdAt}>
+          {formatDateTimeConversational(comment.createdAt)}
+        </CreatedAt>
 
         {isFormOpen ? (
           <BodyForm

@@ -57,6 +57,7 @@ const ConfirmModal = ({
           {message && <Message>{message}</Message>}
           <Actions>
             <StyledButton
+              autoFocus
               variant={variant}
               isWorking={isWorking}
               onClick={() => handleConfirm(modal)}

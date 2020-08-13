@@ -31,6 +31,7 @@ const ProjectBoardIssueDetailsDescription = ({ issue, updateIssue }) => {
             placeholder="Describe the issue"
             defaultValue={description}
             onChange={setDescription}
+            onSave={handleUpdate}
           />
           <Actions>
             <Button variant="primary" onClick={handleUpdate}>

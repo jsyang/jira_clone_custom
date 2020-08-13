@@ -6,7 +6,6 @@ import { updateArrayItemById } from 'shared/utils/javascript';
 import { createQueryParamModalHelpers } from 'shared/utils/queryParamModal';
 import { PageLoader, PageError, Modal } from 'shared/components';
 
-import NavbarLeft from './NavbarLeft';
 import Sidebar from './Sidebar';
 import Board from './Board';
 import IssueSearch from './IssueSearch';
@@ -39,12 +38,11 @@ const Project = () => {
 
   return (
     <ProjectPage>
-      <NavbarLeft
+      <Sidebar
+        project={project}
         issueSearchModalOpen={issueSearchModalHelpers.open}
         issueCreateModalOpen={issueCreateModalHelpers.open}
       />
-
-      <Sidebar project={project} />
 
       {issueSearchModalHelpers.isOpen() && (
         <Modal

@@ -9,11 +9,13 @@ const seedUsers = (): Promise<User[]> => {
       email: 'gaben@jira.test',
       name: 'Gaben',
       avatarUrl: 'https://i.ibb.co/6RJ5hq6/gaben.jpg',
+      privilegeLevel: 1,
     }),
     createEntity(User, {
       email: 'yoda@jira.test',
       name: 'Yoda',
       avatarUrl: 'https://i.ibb.co/6n0hLML/baby-yoda.jpg',
+      privilegeLevel: 1,
     }),
   ];
   return Promise.all(users);

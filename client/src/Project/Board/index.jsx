@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Route, useRouteMatch, useHistory } from 'react-router-dom';
 
 import useMergeState from 'shared/hooks/mergeState';
-import { Breadcrumbs, Modal } from 'shared/components';
+import { Modal } from 'shared/components';
 
 import Header from './Header';
 import Filters from './Filters';
@@ -31,8 +31,7 @@ const ProjectBoard = ({ project, fetchProject, updateLocalProjectIssues }) => {
 
   return (
     <Fragment>
-      <Breadcrumbs items={['Projects', project.name, 'Kanban Board']} />
-      <Header />
+      <Header projectUrl={project.url} />
       <Filters
         projectUsers={project.users}
         defaultFilters={defaultFilters}

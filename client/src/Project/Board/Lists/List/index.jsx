@@ -30,8 +30,8 @@ const ProjectBoardList = ({ status, project, filters, currentUserId }) => {
       {provided => (
         <List>
           <Title>
-            {`${IssueStatusCopy[status]} `}
             <IssuesCount>{formatIssuesCount(allListIssues, filteredListIssues)}</IssuesCount>
+            {` ${IssueStatusCopy[status]} `}
           </Title>
           <Issues
             {...provided.droppableProps}

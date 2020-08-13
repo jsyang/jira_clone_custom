@@ -14,14 +14,15 @@ import {
   Divider,
   LinkItem,
   LinkText,
-  NotImplemented,
 } from './Styles';
 
 const propTypes = {
   project: PropTypes.object.isRequired,
+  issueSearchModalOpen: PropTypes.func.isRequired,
+  issueCreateModalOpen: PropTypes.func.isRequired,
 };
 
-const ProjectSidebar = ({ project }) => {
+const ProjectSidebar = ({ project, issueSearchModalOpen, issueCreateModalOpen }) => {
   const match = useRouteMatch();
 
   return (
@@ -34,30 +35,24 @@ const ProjectSidebar = ({ project }) => {
         </ProjectTexts>
       </ProjectInfo>
 
-      {renderLinkItem(match, 'Kanban Board', 'board', '/board')}
-      {renderLinkItem(match, 'Project settings', 'settings', '/settings')}
+      {renderLinkItem(match, 'Board', 'board', '/board')}
+      {renderLinkItem(match, 'Search issues', 'search', null, issueSearchModalOpen)}
+      {renderLinkItem(match, 'Create new issue', 'plus', null, issueCreateModalOpen)}
       <Divider />
-      {renderLinkItem(match, 'Releases', 'shipping')}
-      {renderLinkItem(match, 'Issues and filters', 'issues')}
-      {renderLinkItem(match, 'Pages', 'page')}
-      {renderLinkItem(match, 'Reports', 'reports')}
-      {renderLinkItem(match, 'Components', 'component')}
+      {renderLinkItem(match, 'Settings', 'settings', '/settings')}
     </Sidebar>
   );
 };
 
-const renderLinkItem = (match, text, iconType, path) => {
-  const isImplemented = !!path;
-
-  const linkItemProps = isImplemented
+const renderLinkItem = (match, text, iconType, path, onClick) => {
+  const linkItemProps = path
     ? { as: NavLink, exact: true, to: `${match.path}${path}` }
-    : { as: 'div' };
+    : { as: 'div', onClick };
 
   return (
     <LinkItem {...linkItemProps}>
       <Icon type={iconType} />
       <LinkText>{text}</LinkText>
-      {!isImplemented && <NotImplemented>Not implemented</NotImplemented>}
     </LinkItem>
   );
 };

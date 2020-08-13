@@ -14,6 +14,8 @@ import {
 import is from 'utils/validation';
 import { Comment, Issue, Project } from '.';
 
+// privilegeLevel = lower is more privileged
+
 @Entity()
 class User extends BaseEntity {
   static validations = {
@@ -32,6 +34,9 @@ class User extends BaseEntity {
 
   @Column('varchar', { length: 2000 })
   avatarUrl: string;
+
+  @Column()
+  privilegeLevel: number;
 
   @CreateDateColumn({ type: 'text' })
   createdAt: Date;

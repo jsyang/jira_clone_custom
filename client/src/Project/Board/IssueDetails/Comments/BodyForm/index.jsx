@@ -35,6 +35,7 @@ const ProjectBoardIssueDetailsCommentsBodyForm = ({
         placeholder="Add a comment..."
         value={value}
         onChange={onChange}
+        onSave={handleSubmit}
         ref={$textareaRef}
       />
       <Actions>
