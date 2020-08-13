@@ -14,7 +14,7 @@ import {
 import is from 'utils/validation';
 import { Comment, Issue, Project } from '.';
 
-// privilegeLevel = lower is more privileged
+// privilegeLevel = privilege ID
 
 @Entity()
 class User extends BaseEntity {

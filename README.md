@@ -1,3 +1,30 @@
+# `jira_clone` Customized
+
+## `jsyang` Changes
+
+Do a search within codebase for `jsyang` for major / notable additions.
+
+### Client changes
+
+- Removed NavbarLeft
+- Renamed "Selected for Development" to "Ready for Development"
+- Added tooltips for date texts throughout app
+- Removed AboutTooltip in favor of custom link to launch project
+- Removed Breadcrumbs from Board and Settings
+- Changed title from "Jira Clone" to "Project Tracker"
+- Added SHORTKEY + ENTER as a KB hotkey for any textarea / rich text component
+- Added ENTER autoFocused button for ConfirmModal
+- Assume UTC for time display (e.g. XXX hours ago) due to SQLite not having a native DATETIME column type
+
+### API changes
+
+- use SQLite instead of PostgreSQL to remove a remote dependency
+- added `privilegeLevel` to User (lower is less power)
+- added AVATAR_URL_UNKNOWN for Guest user
+- ensure issue search works for SQLite
+
+## Original README as follows
+
 <h1 align="center">A simplified Jira clone built with React and Node</h1>
 
 <div align="center">Auto formatted with Prettier, tested with Cypress 🎗</div>

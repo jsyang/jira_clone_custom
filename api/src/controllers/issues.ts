@@ -9,7 +9,10 @@ export const getProjectIssues = catchErrors(async (req, res) => {
   let whereSQL = 'issue.projectId = :projectId';
 
   if (searchTerm) {
-    whereSQL += ' AND (issue.title ILIKE :searchTerm OR issue.descriptionText ILIKE :searchTerm)';
+    // PostgreSQL specific (ILIKE): whereSQL += ' AND (issue.title ILIKE :searchTerm OR issue.descriptionText ILIKE :searchTerm)';
+    // jsyang: SQLite LIKE is already case-insensitive
+    // https://www.sqlitetutorial.net/sqlite-like/
+    whereSQL += ' AND (issue.title LIKE :searchTerm OR issue.descriptionText LIKE :searchTerm)';
   }
 
   const issues = await Issue.createQueryBuilder('issue')

@@ -3,25 +3,28 @@ import { ProjectCategory } from 'constants/projects';
 import { IssueType, IssueStatus, IssuePriority } from 'constants/issues';
 import { createEntity } from 'utils/typeorm';
 
+// jsyang: unknown person avatar
+const AVATAR_URL_UNKNOWN = 'https://i.imgur.com/WudkGQb.jpg';
+
 const seedUsers = (): Promise<User[]> => {
   const users = [
     createEntity(User, {
-      email: 'rick@jira.guest',
-      name: 'Pickle Rick',
+      email: 'jim@completed.delivery',
+      name: 'Jim @ CD',
       avatarUrl: 'https://i.ibb.co/7JM1P2r/picke-rick.jpg',
       privilegeLevel: 1,
     }),
     createEntity(User, {
-      email: 'yoda@jira.guest',
-      name: 'Baby Yoda',
+      email: 'dave@completed.delivery',
+      name: 'Dave @ CD',
       avatarUrl: 'https://i.ibb.co/6n0hLML/baby-yoda.jpg',
       privilegeLevel: 1,
     }),
     createEntity(User, {
-      email: 'gaben@jira.guest',
-      name: 'Lord Gaben',
-      avatarUrl: 'https://i.ibb.co/6RJ5hq6/gaben.jpg',
-      privilegeLevel: 1,
+      email: 'guest@end.user',
+      name: 'Guest User',
+      avatarUrl: AVATAR_URL_UNKNOWN,
+      privilegeLevel: 0,
     }),
   ];
   return Promise.all(users);
