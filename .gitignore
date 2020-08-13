@@ -5,8 +5,12 @@
 **/.DS_Store
 
 # environment config
-**/.env
+# Just save it for now
+# **/.env
 
 # production
 **/build
 **/npm-debug.log*
+
+# api SQLite3 DB
+*.sqlite

@@ -23,10 +23,10 @@ class Comment extends BaseEntity {
   @Column('text')
   body: string;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: 'text' })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({ type: 'text' })
   updatedAt: Date;
 
   @ManyToOne(
