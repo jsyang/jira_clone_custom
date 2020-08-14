@@ -16,10 +16,10 @@ app.use(
 
 app.use(compression());
 
-app.use(express.static(`${__dirname}/build`));
-
-app.use(fallback(`${__dirname}/build/index.html`));
-
+// Need to try serving files first, otherwise the 404 page will catch any file requests
 app.use(express.static(`${__dirname}/files`));
+
+app.use(express.static(`${__dirname}/build`));
+app.use(fallback(`${__dirname}/build/index.html`));
 
 app.listen(process.env.PORT || 8081);

@@ -23,6 +23,7 @@ Do a search within codebase for `jsyang` for major / notable additions.
     - Added Login modal content
 - Secure client with HTTP basic auth when `NODE_ENV=production`
 - Add Quill editor image uploader
+- Remove Atlassian link from 404 page and change the wallpaper
 
 ### API changes
 
