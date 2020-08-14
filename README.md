@@ -41,6 +41,24 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - ensure pm2 for client doesn't start pointing to `jira_clone` demo API server!
 - Add `skytrak2.conf` for `nginx.conf` addition 
 
+### Dumb Bitnami shit
+
+```
+sudo /opt/bitnami/ctlscript.sh stop nginx
+
+sudo /opt/bitnami/letsencrypt/lego --tls --email="jim@completed.delivery" --domains="skytrak2.completed.delivery" --path="/opt/bitnami/letsencrypt" run
+
+sudo mv /opt/bitnami/nginx/conf/server.crt /opt/bitnami/nginx/conf/server.crt.old
+sudo mv /opt/bitnami/nginx/conf/server.key /opt/bitnami/nginx/conf/server.key.old
+sudo mv /opt/bitnami/nginx/conf/server.csr /opt/bitnami/nginx/conf/server.csr.old
+sudo ln -sf /opt/bitnami/letsencrypt/certificates/skytrak2.completed.delivery.key /opt/bitnami/nginx/conf/server.key
+sudo ln -sf /opt/bitnami/letsencrypt/certificates/skytrak2.completed.delivery.crt /opt/bitnami/nginx/conf/server.crt
+sudo chown root:root /opt/bitnami/nginx/conf/server*
+sudo chmod 600 /opt/bitnami/nginx/conf/server*
+
+sudo /opt/bitnami/ctlscript.sh start nginx
+```
+
 ## Original README as follows
 
 <h1 align="center">A simplified Jira clone built with React and Node</h1>
