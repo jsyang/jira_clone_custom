@@ -15,7 +15,7 @@ const seedUsers = (): Promise<User[]> => {
       email: 'yoda@jira.test',
       name: 'Yoda',
       avatarUrl: 'https://i.ibb.co/6n0hLML/baby-yoda.jpg',
-      privilegeLevel: 1,
+      privilegeLevel: 0,
     }),
   ];
   return Promise.all(users);

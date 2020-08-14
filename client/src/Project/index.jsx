@@ -10,6 +10,7 @@ import Sidebar from './Sidebar';
 import Board from './Board';
 import IssueSearch from './IssueSearch';
 import IssueCreate from './IssueCreate';
+import Login from './Login';
 import ProjectSettings from './ProjectSettings';
 import { ProjectPage } from './Styles';
 
@@ -19,6 +20,7 @@ const Project = () => {
 
   const issueSearchModalHelpers = createQueryParamModalHelpers('issue-search');
   const issueCreateModalHelpers = createQueryParamModalHelpers('issue-create');
+  const loginModalHelpers = createQueryParamModalHelpers('login');
 
   const [{ data, error, setLocalData }, fetchProject] = useApi.get('/project');
 
@@ -42,6 +44,7 @@ const Project = () => {
         project={project}
         issueSearchModalOpen={issueSearchModalHelpers.open}
         issueCreateModalOpen={issueCreateModalHelpers.open}
+        loginModalOpen={loginModalHelpers.open}
       />
 
       {issueSearchModalHelpers.isOpen() && (
@@ -70,6 +73,17 @@ const Project = () => {
               modalClose={modal.close}
             />
           )}
+        />
+      )}
+
+      {loginModalHelpers.isOpen() && (
+        <Modal
+          isOpen
+          testid="modal:login"
+          width={640}
+          withCloseIcon={false}
+          onClose={loginModalHelpers.close}
+          renderContent={modal => <Login modalClose={modal.close} />}
         />
       )}
 

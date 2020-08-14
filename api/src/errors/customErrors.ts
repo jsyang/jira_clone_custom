@@ -43,3 +43,10 @@ export class NotPermittedError extends CustomError {
     super(message, 'NOT_PERMITTED', 403);
   }
 }
+
+// jsyang: login failed or other credentials invalid
+export class InvalidCredentialsError extends CustomError {
+  constructor(message = 'Invalid credentials.') {
+    super(message, 'INVALID_CREDENTIALS', 400);
+  }
+}

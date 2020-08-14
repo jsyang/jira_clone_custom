@@ -21,6 +21,18 @@ export const findEntityOrThrow = async <T extends EntityConstructor>(
   return instance;
 };
 
+// jsyang: use this to search users by email for login
+export const findEntityByParamsOrThrow = async <T extends EntityConstructor>(
+  Constructor: T,
+  options: FindOneOptions,
+): Promise<InstanceType<T>> => {
+  const instance = await Constructor.findOne(options);
+  if (!instance) {
+    throw new EntityNotFoundError(Constructor.name);
+  }
+  return instance;
+};
+
 export const validateAndSaveEntity = async <T extends EntityInstance>(instance: T): Promise<T> => {
   const Constructor = entities[instance.constructor.name];
 

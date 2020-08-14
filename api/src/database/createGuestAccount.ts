@@ -11,12 +11,14 @@ const seedUsers = (): Promise<User[]> => {
     createEntity(User, {
       email: 'jim@completed.delivery',
       name: 'Jim @ CD',
+      password: 'jimcompleteddelivery',
       avatarUrl: 'https://i.ibb.co/7JM1P2r/picke-rick.jpg',
       privilegeLevel: 1,
     }),
     createEntity(User, {
       email: 'dave@completed.delivery',
       name: 'Dave @ CD',
+      password: 'davecompleteddelivery',
       avatarUrl: 'https://i.ibb.co/6n0hLML/baby-yoda.jpg',
       privilegeLevel: 1,
     }),

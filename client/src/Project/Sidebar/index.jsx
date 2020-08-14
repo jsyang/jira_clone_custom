@@ -4,6 +4,7 @@ import { NavLink, useRouteMatch } from 'react-router-dom';
 
 import { ProjectCategoryCopy } from 'shared/constants/projects';
 import { Icon, ProjectAvatar } from 'shared/components';
+import { removeStoredAuthToken } from 'shared/utils/authToken';
 
 import {
   Sidebar,
@@ -22,16 +23,36 @@ const propTypes = {
   project: PropTypes.object.isRequired,
   issueSearchModalOpen: PropTypes.func.isRequired,
   issueCreateModalOpen: PropTypes.func.isRequired,
+  loginModalOpen: PropTypes.func.isRequired,
 };
 
-const ProjectSidebar = ({ project, issueSearchModalOpen, issueCreateModalOpen }) => {
+const ProjectSidebar = ({
+  project,
+  issueSearchModalOpen,
+  issueCreateModalOpen,
+  loginModalOpen,
+}) => {
   const match = useRouteMatch();
+
   const { privilegeLevel } = useCurrentUser();
+
+  const logout = () => {
+    removeStoredAuthToken();
+    window.location.reload();
+  };
 
   const settingsSection = (
     <div>
       <Divider />
       {renderLinkItem(match, 'Settings', 'settings', '/settings')}
+      {renderLinkItem(match, 'Logout', 'arrow-left', null, logout)}
+    </div>
+  );
+
+  const loginSection = (
+    <div>
+      <Divider />
+      {renderLinkItem(match, 'Login', 'arrow-right', null, loginModalOpen)}
     </div>
   );
 
@@ -48,7 +69,7 @@ const ProjectSidebar = ({ project, issueSearchModalOpen, issueCreateModalOpen })
       {renderLinkItem(match, 'Board', 'board', '/board')}
       {renderLinkItem(match, 'Search issues', 'search', null, issueSearchModalOpen)}
       {renderLinkItem(match, 'Create new issue', 'plus', null, issueCreateModalOpen)}
-      {privilegeLevel !== 0 ? settingsSection : null}
+      {privilegeLevel !== 0 ? settingsSection : loginSection}
     </Sidebar>
   );
 };

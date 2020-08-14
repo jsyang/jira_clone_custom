@@ -12,6 +12,7 @@ export const attachPublicRoutes = (app: any): void => {
   }
 
   app.post('/authentication/guest', authentication.createGuestAccount);
+  app.post('/authentication/login', authentication.login); // jsyang
 };
 
 export const attachPrivateRoutes = (app: any): void => {

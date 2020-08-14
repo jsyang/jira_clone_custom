@@ -32,11 +32,14 @@ class User extends BaseEntity {
   @Column('varchar')
   email: string;
 
-  @Column('varchar', { length: 2000 })
-  avatarUrl: string;
+  @Column('varchar', { nullable: true })
+  password: string;
 
   @Column()
   privilegeLevel: number;
+
+  @Column('varchar', { length: 2000 })
+  avatarUrl: string;
 
   @CreateDateColumn({ type: 'text' })
   createdAt: Date;
