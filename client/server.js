@@ -5,12 +5,6 @@ const basicAuth = require('express-basic-auth');
 
 const app = express();
 
-app.use(compression());
-
-app.use(express.static(`${__dirname}/build`));
-
-app.use(fallback(`${__dirname}/build/index.html`));
-
 // jsyang: use basic auth to secure everything
 if (process.env.NODE_ENV === 'production') {
   app.use(
@@ -19,5 +13,11 @@ if (process.env.NODE_ENV === 'production') {
     }),
   );
 }
+
+app.use(compression());
+
+app.use(express.static(`${__dirname}/build`));
+
+app.use(fallback(`${__dirname}/build/index.html`));
 
 app.listen(process.env.PORT || 8081);
