@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import { ImageUpload } from 'quill-image-upload';
+import MarkdownShortcuts from 'quill-markdown-shortcuts';
 import { getStoredAuthToken } from 'shared/utils/authToken';
 import toast from 'shared/utils/toast';
 
@@ -28,6 +29,7 @@ const defaultProps = {
   getEditor: () => {},
 };
 
+Quill.register('modules/markdownShortcuts', MarkdownShortcuts);
 Quill.register('modules/imageUpload', ImageUpload);
 
 const TextEditor = ({
@@ -81,6 +83,7 @@ const TextEditor = ({
             toast.error(serverError);
           },
         },
+        markdownShortcuts: {},
       },
     });
 

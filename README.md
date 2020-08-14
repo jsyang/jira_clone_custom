@@ -24,6 +24,7 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - Secure client with HTTP basic auth when `NODE_ENV=production`
 - Add Quill editor image uploader
 - Remove Atlassian link from 404 page and change the wallpaper
+- Added Quill editor Markdown shortcuts so that descriptions can be easily formatted via KB
 
 ### API changes
 
