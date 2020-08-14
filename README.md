@@ -21,6 +21,7 @@ Do a search within codebase for `jsyang` for major / notable additions.
     - to set reporter as anyone other than themselves
 - Allow users to Login and Logout from SideBar
     - Added Login modal content
+- Secure client with HTTP basic auth when `NODE_ENV=production`
 
 ### API changes
 
