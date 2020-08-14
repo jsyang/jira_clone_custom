@@ -5,8 +5,7 @@
 **/.DS_Store
 
 # environment config
-# Just save it for now
-# **/.env
+**/.env
 
 # production
 **/build
