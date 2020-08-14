@@ -41,6 +41,8 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - ensure Users table is seeded in correct order
 - ensure pm2 for client doesn't start pointing to `jira_clone` demo API server!
 - Add `skytrak2.conf` for `nginx.conf` addition 
+- add `process.env.ROOT_PATH` to allow all API routes to be rewritten as sub-paths under it
+    - e.g. if ROOT_PATH is `/api`, then you'll get `/api/authentication/guest`, etc.
 
 ### Dumb Bitnami shit
 

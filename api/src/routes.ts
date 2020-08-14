@@ -2,32 +2,28 @@ import * as authentication from 'controllers/authentication';
 import * as comments from 'controllers/comments';
 import * as issues from 'controllers/issues';
 import * as projects from 'controllers/projects';
-import * as test from 'controllers/test';
 import * as users from 'controllers/users';
 
-export const attachPublicRoutes = (app: any): void => {
-  if (process.env.NODE_ENV === 'test') {
-    app.delete('/test/reset-database', test.resetDatabase);
-    app.post('/test/create-account', test.createAccount);
-  }
+const { ROOT_PATH = '' } = process.env;
 
-  app.post('/api/authentication/guest', authentication.createGuestAccount);
-  app.post('/api/authentication/login', authentication.login); // jsyang
+export const attachPublicRoutes = (app: any): void => {
+  app.post(`${ROOT_PATH}/authentication/guest`, authentication.createGuestAccount);
+  app.post(`${ROOT_PATH}/authentication/login`, authentication.login); // jsyang
 };
 
 export const attachPrivateRoutes = (app: any): void => {
-  app.post('/api/comments', comments.create);
-  app.put('/api/comments/:commentId', comments.update);
-  app.delete('/api/comments/:commentId', comments.remove);
+  app.post(`${ROOT_PATH}/comments`, comments.create);
+  app.put(`${ROOT_PATH}/comments/:commentId`, comments.update);
+  app.delete(`${ROOT_PATH}/comments/:commentId`, comments.remove);
 
-  app.get('/api/issues', issues.getProjectIssues);
-  app.get('/api/issues/:issueId', issues.getIssueWithUsersAndComments);
-  app.post('/api/issues', issues.create);
-  app.put('/api/issues/:issueId', issues.update);
-  app.delete('/api/issues/:issueId', issues.remove);
+  app.get(`${ROOT_PATH}/issues`, issues.getProjectIssues);
+  app.get(`${ROOT_PATH}/issues/:issueId`, issues.getIssueWithUsersAndComments);
+  app.post(`${ROOT_PATH}/issues`, issues.create);
+  app.put(`${ROOT_PATH}/issues/:issueId`, issues.update);
+  app.delete(`${ROOT_PATH}/issues/:issueId`, issues.remove);
 
-  app.get('/api/project', projects.getProjectWithUsersAndIssues);
-  app.put('/api/project', projects.update);
+  app.get(`${ROOT_PATH}/project`, projects.getProjectWithUsersAndIssues);
+  app.put(`${ROOT_PATH}/project`, projects.update);
 
-  app.get('/api/currentUser', users.getCurrentUser);
+  app.get(`${ROOT_PATH}/currentUser`, users.getCurrentUser);
 };
