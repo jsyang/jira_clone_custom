@@ -22,6 +22,7 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - Allow users to Login and Logout from SideBar
     - Added Login modal content
 - Secure client with HTTP basic auth when `NODE_ENV=production`
+- Add Quill editor image uploader
 
 ### API changes
 
@@ -43,6 +44,7 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - Add `skytrak2.conf` for `nginx.conf` addition 
 - add `process.env.ROOT_PATH` to allow all API routes to be rewritten as sub-paths under it
     - e.g. if ROOT_PATH is `/api`, then you'll get `/api/authentication/guest`, etc.
+- Add `/images/upload` to handle single image uploads for the Quill editor
 
 ### Dumb Bitnami shit
 

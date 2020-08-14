@@ -2,6 +2,9 @@ import React, { useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
+import { ImageUpload } from 'quill-image-upload';
+import { getStoredAuthToken } from 'shared/utils/authToken';
+import toast from 'shared/utils/toast';
 
 import { EditorCont } from './Styles';
 
@@ -24,6 +27,8 @@ const defaultProps = {
   onSave: () => {},
   getEditor: () => {},
 };
+
+Quill.register('modules/imageUpload', ImageUpload);
 
 const TextEditor = ({
   className,
@@ -48,7 +53,7 @@ const TextEditor = ({
       modules: {
         toolbar: [
           ['bold', 'italic', 'underline', 'strike'],
-          ['blockquote', 'code-block'],
+          ['blockquote', 'code-block', 'image'],
           [{ list: 'ordered' }, { list: 'bullet' }],
           [{ header: [1, 2, 3, 4, 5, 6, false] }],
           [{ color: [] }, { background: [] }],
@@ -62,6 +67,18 @@ const TextEditor = ({
               shortKey: true,
               handler: onSave,
             },
+          },
+        },
+        /* Upload images for storage instead of inlining them via base64 (Quill default) */
+        imageUpload: {
+          url: `${process.env.API_URL}/image/upload`,
+          name: 'image',
+          withCredentials: false,
+          headers: {
+            Authorization: getStoredAuthToken() ? `Bearer ${getStoredAuthToken()}` : undefined,
+          },
+          callbackKO: serverError => {
+            toast.error(serverError);
           },
         },
       },

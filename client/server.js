@@ -20,4 +20,6 @@ app.use(express.static(`${__dirname}/build`));
 
 app.use(fallback(`${__dirname}/build/index.html`));
 
+app.use(express.static(`${__dirname}/files`));
+
 app.listen(process.env.PORT || 8081);

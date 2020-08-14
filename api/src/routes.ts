@@ -3,6 +3,7 @@ import * as comments from 'controllers/comments';
 import * as issues from 'controllers/issues';
 import * as projects from 'controllers/projects';
 import * as users from 'controllers/users';
+import * as images from 'controllers/images';
 
 const { ROOT_PATH = '' } = process.env;
 
@@ -26,4 +27,7 @@ export const attachPrivateRoutes = (app: any): void => {
   app.put(`${ROOT_PATH}/project`, projects.update);
 
   app.get(`${ROOT_PATH}/currentUser`, users.getCurrentUser);
+
+  // jsyang: handle image uploads for the quill editor
+  app.post(`${ROOT_PATH}/image/upload`, images.uploadSingleImage, images.create);
 };

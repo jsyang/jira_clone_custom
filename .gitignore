@@ -14,3 +14,7 @@
 # api SQLite3 DB
 *.sqlite
 .idea
+
+# client Uploaded files
+client/files/images/*
+!client/files/images/.gitkeep
