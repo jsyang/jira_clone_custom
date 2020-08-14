@@ -6,13 +6,13 @@ const basicAuth = require('express-basic-auth');
 const app = express();
 
 // jsyang: use basic auth to secure everything
-if (process.env.NODE_ENV === 'production') {
-  app.use(
-    basicAuth({
-      users: { skytrak2: 'proposalbeingconsidered' },
-    }),
-  );
-}
+app.use(
+  basicAuth({
+    users: { skytrak2: 'proposalbeingconsidered' },
+    challenge: true,
+    realm: 'SkyTrak2 Project Tracker',
+  }),
+);
 
 app.use(compression());
 
