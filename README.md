@@ -37,7 +37,9 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - added `password` to User (just plaintext is enough, not super critical to hash)
 - removed Comment, Issue seeds for DB
 - ensure DB is only seeded if no Project / User tables have no rows
-- ensure Users table is seeded in correct order 
+- ensure Users table is seeded in correct order
+- ensure pm2 for client doesn't start pointing to `jira_clone` demo API server!
+- Add `skytrak2.conf` for `nginx.conf` addition 
 
 ## Original README as follows
 
