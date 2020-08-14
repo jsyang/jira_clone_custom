@@ -33,7 +33,13 @@ const propTypes = {
 const ProjectIssueCreate = ({ project, fetchProject, onCreate, modalClose }) => {
   const [{ isCreating }, createIssue] = useApi.post('/issues');
 
-  const { currentUserId } = useCurrentUser();
+  const { currentUserId, privilegeLevel } = useCurrentUser();
+
+  // jsyang: only allow guest user to set the reporter
+  const projectReporters = {
+    ...project,
+    users: project.users.filter(u => (privilegeLevel === 0 ? u.id === currentUserId : true)),
+  };
 
   return (
     <Form
@@ -92,9 +98,9 @@ const ProjectIssueCreate = ({ project, fetchProject, onCreate, modalClose }) => 
         <Form.Field.Select
           name="reporterId"
           label="Reporter"
-          options={userOptions(project)}
-          renderOption={renderUser(project)}
-          renderValue={renderUser(project)}
+          options={userOptions(projectReporters)}
+          renderOption={renderUser(projectReporters)}
+          renderValue={renderUser(projectReporters)}
         />
         <Form.Field.Select
           isMulti

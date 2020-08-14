@@ -16,8 +16,9 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - Added ENTER autoFocused button for ConfirmModal
 - Assume UTC for time display (e.g. XXX hours ago) due to SQLite not having a native DATETIME column type
 - expose `privilegeLevel` from currentUser hook
-- `privilegeLevel` 0 is not allowed access to
-    - project settings
+- `privilegeLevel` 0 is not allowed
+    - access to project settings
+    - to set reporter as anyone other than themselves
 - Allow users to Login and Logout from SideBar
     - Added Login modal content
 
@@ -34,6 +35,8 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - prevent users from deleting comments from other users
 - added `/authentication/login`
 - added `password` to User (just plaintext is enough, not super critical to hash)
+- removed Comment, Issue seeds for DB
+- ensure DB is only seeded if no Project / User tables have no rows 
 
 ## Original README as follows
 

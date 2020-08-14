@@ -9,6 +9,15 @@ type EntityInstance = Project | User | Issue | Comment;
 
 const entities: { [key: string]: EntityConstructor } = { Comment, Issue, Project, User };
 
+// jsyang: use this very sparingly!
+export const getAllOfEntity = async <T extends EntityConstructor>(
+  Constructor: T,
+): Promise<Array<any>> => {
+  const [all] = await Constructor.findAndCount();
+
+  return all;
+};
+
 export const findEntityOrThrow = async <T extends EntityConstructor>(
   Constructor: T,
   id: number | string,
