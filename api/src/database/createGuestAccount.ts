@@ -9,28 +9,31 @@ const seedUsers = async (): Promise<User[]> => {
   const allUsers = await getAllOfEntity(User);
 
   if (allUsers.length === 0) {
-    return Promise.all([
-      createEntity(User, {
-        email: 'jim@completed.delivery',
-        name: 'Jim @ CD',
-        password: 'jimcompleteddelivery',
-        avatarUrl: 'https://i.ibb.co/7JM1P2r/picke-rick.jpg',
-        privilegeLevel: 1,
-      }),
-      createEntity(User, {
-        email: 'dave@completed.delivery',
-        name: 'Dave @ CD',
-        password: 'davecompleteddelivery',
-        avatarUrl: 'https://i.ibb.co/6n0hLML/baby-yoda.jpg',
-        privilegeLevel: 1,
-      }),
-      createEntity(User, {
-        email: 'guest@end.user',
-        name: 'Guest User',
-        avatarUrl: AVATAR_URL_UNKNOWN,
-        privilegeLevel: 0,
-      }),
-    ]);
+    // jsyang: ensure users are seeded in order so display for filters on client is clear!
+    await createEntity(User, {
+      email: 'jim@completed.delivery',
+      name: 'Jim @ CD',
+      password: 'jimcompleteddelivery',
+      avatarUrl: 'https://avatars1.githubusercontent.com/u/601346?s=460',
+      privilegeLevel: 1,
+    });
+
+    await createEntity(User, {
+      email: 'dave@completed.delivery',
+      name: 'Dave @ CD',
+      password: 'davecompleteddelivery',
+      avatarUrl: 'https://avatars3.githubusercontent.com/u/7823192?s=460',
+      privilegeLevel: 1,
+    });
+
+    await createEntity(User, {
+      email: 'guest@end.user',
+      name: 'Guest User',
+      avatarUrl: AVATAR_URL_UNKNOWN,
+      privilegeLevel: 0,
+    });
+
+    return getAllOfEntity(User);
   }
 
   return allUsers;

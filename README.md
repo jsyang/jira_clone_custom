@@ -36,7 +36,8 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - added `/authentication/login`
 - added `password` to User (just plaintext is enough, not super critical to hash)
 - removed Comment, Issue seeds for DB
-- ensure DB is only seeded if no Project / User tables have no rows 
+- ensure DB is only seeded if no Project / User tables have no rows
+- ensure Users table is seeded in correct order 
 
 ## Original README as follows
 
