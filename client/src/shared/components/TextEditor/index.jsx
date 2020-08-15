@@ -4,6 +4,8 @@ import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import { ImageUpload } from 'quill-image-upload';
 import MarkdownShortcuts from 'quill-markdown-shortcuts';
+import AutoLinks from 'quill-auto-links';
+
 import { getStoredAuthToken } from 'shared/utils/authToken';
 import toast from 'shared/utils/toast';
 
@@ -31,6 +33,7 @@ const defaultProps = {
 
 Quill.register('modules/markdownShortcuts', MarkdownShortcuts);
 Quill.register('modules/imageUpload', ImageUpload);
+Quill.register('modules/autoLinks', AutoLinks);
 
 const TextEditor = ({
   className,
@@ -84,6 +87,11 @@ const TextEditor = ({
           },
         },
         markdownShortcuts: {},
+        /* jsyang: Linkify typed / pasted URLs automatically */
+        autoLinks: {
+          paste: true,
+          type: true,
+        },
       },
     });
 

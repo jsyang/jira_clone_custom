@@ -25,6 +25,7 @@ Do a search within codebase for `jsyang` for major / notable additions.
 - Add Quill editor image uploader
 - Remove Atlassian link from 404 page and change the wallpaper
 - Added Quill editor Markdown shortcuts so that descriptions can be easily formatted via KB
+- Added Quill auto-linkify typed / pasted URLs
 
 ### API changes
 
@@ -48,7 +49,16 @@ Do a search within codebase for `jsyang` for major / notable additions.
     - e.g. if ROOT_PATH is `/api`, then you'll get `/api/authentication/guest`, etc.
 - Add `/images/upload` to handle single image uploads for the Quill editor
 
-### Dumb Bitnami shit
+### Todo
+
+- Slack integration: comment / issue / project updates trigger slack channel messages
+    - https://slack.dev/node-slack-sdk/web-api
+- Sort lists by:
+    - priority
+    - time estimate (total time estimate)
+    - time remaining (time remaining)
+
+### Lightsail Bitnami NGINX image setup
 
 ```
 sudo /opt/bitnami/ctlscript.sh stop nginx
