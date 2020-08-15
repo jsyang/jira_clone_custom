@@ -3,7 +3,7 @@ import { ProjectCategory } from 'constants/projects';
 import { createEntity, getAllOfEntity } from 'utils/typeorm';
 
 // jsyang: unknown person avatar
-const AVATAR_URL_UNKNOWN = 'https://i.imgur.com/WudkGQb.jpg';
+const AVATAR_URL_UNKNOWN = '/images/unknown-person.jpg';
 
 const seedUsers = async (): Promise<User[]> => {
   const allUsers = await getAllOfEntity(User);
