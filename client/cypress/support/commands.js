@@ -4,7 +4,7 @@ import 'regenerator-runtime/runtime';
 import '@4tw/cypress-drag-drop';
 
 import { objectToQueryString } from 'shared/utils/url';
-import { getStoredAuthToken, storeAuthToken } from 'shared/utils/authToken';
+import { getStoredAuthToken } from 'shared/utils/authToken';
 
 import { testid } from './utils';
 
@@ -66,10 +66,4 @@ Cypress.Commands.add('apiRequest', (method, url, variables = {}, options = {}) =
 
 Cypress.Commands.add('resetDatabase', () => {
   cy.apiRequest('DELETE', '/test/reset-database');
-});
-
-Cypress.Commands.add('createTestAccount', () => {
-  cy.apiRequest('POST', '/test/create-account').then(response => {
-    storeAuthToken(response.body.authToken);
-  });
 });

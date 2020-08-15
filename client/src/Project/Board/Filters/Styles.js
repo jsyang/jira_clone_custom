@@ -53,3 +53,19 @@ export const ClearAll = styled.div`
     color: ${color.textMedium};
   }
 `;
+
+export const SelectItem = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  height: 32px;
+  vertical-align: middle;
+  line-height: 1;
+  border-radius: 3px;
+  color: ${color.textDark};
+  ${props => props.isSelectValue && `margin-left: 6px;`}
+  ${props =>
+    props.isActive &&
+    `color: ${color.primary} !important; background: ${color.backgroundLightPrimary};`}
+  ${font.size(14.5)}
+`;

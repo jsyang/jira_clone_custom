@@ -3,7 +3,6 @@ import { testid } from '../support/utils';
 describe('Project settings', () => {
   beforeEach(() => {
     cy.resetDatabase();
-    cy.createTestAccount();
     cy.visit('/project/settings');
   });
 

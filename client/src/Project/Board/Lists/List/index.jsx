@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Droppable } from 'react-beautiful-dnd';
 import { intersection } from 'lodash';
 
-import { IssueStatusCopy } from 'shared/constants/issues';
+import { IssueStatusCopy, IssueSort } from 'shared/constants/issues';
 
 import Issue from './Issue';
 import { List, Title, IssuesCount, Issues } from './Styles';
@@ -20,9 +20,20 @@ const defaultProps = {
   currentUserId: null,
 };
 
+const sortByFunction = {
+  [IssueSort.BY_PRIORITY]: (a, b) => Number(b.priority) - Number(a.priority),
+  [IssueSort.BY_ESTIMATE]: (a, b) => (a.estimate || 0) - (b.estimate || 0), // least estimate first
+  [IssueSort.BY_SPENT]: (a, b) => Number(b.timeSpent || 0) - Number(a.timeSpent || 0), // most time spent first
+
+  default: () => 0,
+};
+
 const ProjectBoardList = ({ status, project, filters, currentUserId }) => {
   const filteredIssues = filterIssues(project.issues, filters, currentUserId);
   const filteredListIssues = getSortedListIssues(filteredIssues, status);
+  const sortedListIssues = filteredListIssues.sort(
+    sortByFunction[filters.sort] || sortByFunction.default,
+  );
   const allListIssues = getSortedListIssues(project.issues, status);
 
   return (
@@ -38,7 +49,7 @@ const ProjectBoardList = ({ status, project, filters, currentUserId }) => {
             ref={provided.innerRef}
             data-testid={`board-list:${status}`}
           >
-            {filteredListIssues.map((issue, index) => (
+            {sortedListIssues.map((issue, index) => (
               <Issue key={issue.id} projectUsers={project.users} issue={issue} index={index} />
             ))}
             {provided.placeholder}

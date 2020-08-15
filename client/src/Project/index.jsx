@@ -80,7 +80,7 @@ const Project = () => {
         <Modal
           isOpen
           testid="modal:login"
-          width={640}
+          width={500}
           withCloseIcon={false}
           onClose={loginModalHelpers.close}
           renderContent={modal => <Login modalClose={modal.close} />}

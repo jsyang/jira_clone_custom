@@ -3,7 +3,6 @@ import { testid } from '../support/utils';
 describe('Issue create', () => {
   beforeEach(() => {
     cy.resetDatabase();
-    cy.createTestAccount();
     cy.visit('/project/settings?modal-issue-create=true');
   });
 

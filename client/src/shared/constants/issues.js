@@ -39,3 +39,15 @@ export const IssuePriorityCopy = {
   [IssuePriority.LOW]: 'Low',
   [IssuePriority.LOWEST]: 'Lowest',
 };
+
+export const IssueSort = {
+  BY_ESTIMATE: '1',
+  BY_SPENT: '2',
+  BY_PRIORITY: '3',
+};
+
+export const IssueSortCopy = {
+  [IssueSort.BY_ESTIMATE]: 'By Time Estimate',
+  [IssueSort.BY_SPENT]: 'By Time Spent',
+  [IssueSort.BY_PRIORITY]: 'By Priority',
+};

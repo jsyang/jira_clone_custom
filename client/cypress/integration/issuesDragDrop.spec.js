@@ -5,7 +5,6 @@ import { testid } from '../support/utils';
 describe('Issues drag & drop', () => {
   beforeEach(() => {
     cy.resetDatabase();
-    cy.createTestAccount();
     cy.visit('/project/board');
   });
 

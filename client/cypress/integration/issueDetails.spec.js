@@ -3,7 +3,6 @@ import { testid } from '../support/utils';
 describe('Issue details', () => {
   beforeEach(() => {
     cy.resetDatabase();
-    cy.createTestAccount();
     cy.visit('/project/board');
     getListIssue().click(); // open issue details modal
   });

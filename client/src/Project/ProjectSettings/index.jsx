@@ -41,7 +41,7 @@ const ProjectSettings = ({ project, fetchProject }) => {
     >
       <FormCont>
         <FormElement>
-          <FormHeading>Project Details</FormHeading>
+          <FormHeading>Project Settings</FormHeading>
 
           <Form.Field.Input name="name" label="Name" />
           <Form.Field.Input name="url" label="URL" />
