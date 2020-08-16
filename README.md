@@ -74,14 +74,39 @@ sudo chmod 600 /opt/bitnami/nginx/conf/server*
 sudo /opt/bitnami/ctlscript.sh start nginx
 ```
 
+### Lightsail deployment
+
+```
+git pull
+
+cd ~/jira_clone_custom/api
+npm i
+npm run build
+pm2 delete jira_api
+npm run start:production
+
+cd ~/jira_clone_custom/api
+npm i
+npm run build
+pm2 delete jira_client
+npm run start:production
+```
+
 ### Slack Integration
 
 [Slack API page](https://api.slack.com/apps/A019M6ZPJ80/oauth), add these Bot Token Scopes:
 
+- channels:join
 - chat:write
 - chat:write.customize 
 
 Then generate a "Bot User OAuth Access Token" and copy it, save it to the API `.env` under `SLACK_WEB_API_TOKEN`.
+Set the channel the app will post in via `SLACK_CHANNEL`.
+Set the hosted app origin URL via `CLIENT_URL`.
+
+
+
+---
 
 ## Original README as follows
 
