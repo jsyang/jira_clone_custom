@@ -54,11 +54,7 @@ Do a search within codebase for `jsyang` for major / notable additions.
     - priority
     - time estimate (total time estimate)
     - time remaining (time remaining)
-
-### Todo
-
-- Slack integration: comment / issue / project updates trigger slack channel messages
-    - https://slack.dev/node-slack-sdk/web-api
+- Slack integration: comment / issue / project updates now trigger slack channel messages
 
 ### Lightsail Bitnami NGINX image setup
 
@@ -77,6 +73,15 @@ sudo chmod 600 /opt/bitnami/nginx/conf/server*
 
 sudo /opt/bitnami/ctlscript.sh start nginx
 ```
+
+### Slack Integration
+
+[Slack API page](https://api.slack.com/apps/A019M6ZPJ80/oauth), add these Bot Token Scopes:
+
+- chat:write
+- chat:write.customize 
+
+Then generate a "Bot User OAuth Access Token" and copy it, save it to the API `.env` under `SLACK_WEB_API_TOKEN`.
 
 ## Original README as follows
 

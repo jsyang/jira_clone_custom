@@ -1,6 +1,7 @@
 import { Issue } from 'entities';
 import { catchErrors, NotPermittedError } from 'errors';
 import { updateEntity, deleteEntity, createEntity, findEntityOrThrow } from 'utils/typeorm';
+import { CLIENT_URL, escapeText, sendMessage } from 'utils/slack';
 
 export const getProjectIssues = catchErrors(async (req, res) => {
   const { projectId } = req.currentUser;
@@ -34,6 +35,15 @@ export const getIssueWithUsersAndComments = catchErrors(async (req, res) => {
 export const create = catchErrors(async (req, res) => {
   const listPosition = await calculateListPosition(req.body);
   const issue = await createEntity(Issue, { ...req.body, listPosition });
+
+  sendMessage(
+    [
+      `*${escapeText(req.currentUser.name)}* created `,
+      `<${CLIENT_URL}/project/board/issues/${issue.id}|${escapeText(issue.title)}>.`,
+    ],
+    ':memo:',
+  );
+
   res.respond({ issue });
 });
 
@@ -43,6 +53,15 @@ export const update = catchErrors(async (req, res) => {
   }
 
   const issue = await updateEntity(Issue, req.params.issueId, req.body);
+
+  sendMessage(
+    [
+      `*${escapeText(req.currentUser.name)}* updated `,
+      `<${CLIENT_URL}/project/board/issues/${issue.id}|${escapeText(issue.title)}>.`,
+    ],
+    ':memo:',
+  );
+
   res.respond({ issue });
 });
 
@@ -50,6 +69,15 @@ export const remove = catchErrors(async (req, res) => {
   if (req.currentUser.privilegeLevel === 0) {
     throw new NotPermittedError();
   }
+
+  const foundIssue = await findEntityOrThrow(Issue, req.params.issueId);
+  sendMessage(
+    [
+      `*${escapeText(req.currentUser.name)}* deleted `,
+      `<${CLIENT_URL}/project/board/issues/${foundIssue.id}|${escapeText(foundIssue.title)}>.`,
+    ],
+    ':wastebasket:',
+  );
 
   const issue = await deleteEntity(Issue, req.params.issueId);
   res.respond({ issue });
