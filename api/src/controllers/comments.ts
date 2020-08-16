@@ -12,7 +12,7 @@ export const create = catchErrors(async (req, res) => {
   sendMessage([
     `*${escapeText(req.currentUser.name)}*`,
     ` posted a comment on `,
-    `<${CLIENT_URL}/project/board/issues/${issueId}|${escapeText(foundIssue.title)}>:\n\n`,
+    `<${CLIENT_URL}/project/board/issues/${issueId}|${escapeText(foundIssue.title)}>:\n\n>`,
     escapeText(body),
   ]);
 
@@ -27,7 +27,7 @@ export const update = catchErrors(async (req, res) => {
   sendMessage([
     `*${escapeText(req.currentUser.name)}*`,
     ` updated a comment on `,
-    `<${CLIENT_URL}/project/board/issues/${issueId}|${escapeText(foundIssue.title)}>:\n\n`,
+    `<${CLIENT_URL}/project/board/issues/${issueId}|${escapeText(foundIssue.title)}>:\n\n>`,
     escapeText(body),
   ]);
 
