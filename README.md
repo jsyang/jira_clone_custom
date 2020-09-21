@@ -55,6 +55,7 @@ Do a search within codebase for `jsyang` for major / notable additions.
     - time estimate (total time estimate)
     - time remaining (time remaining)
 - Slack integration: comment / issue / project updates now trigger slack channel messages
+- Search for `path.to.frontend` for any configuration settings that will need to be replaced if hosting on custom domain
 
 ### Lightsail Bitnami NGINX image setup
 
